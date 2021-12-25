@@ -25,6 +25,7 @@ const Map = ({setCoordinates, setBounds}) => {
         onChange={(e) => {
           console.log(e); 
           setCoordinates({lat: e.center.lat, lng:e.center.lng});
+          setBounds({ne: e.marginBounds.ne, sw: e.marginBounds.sw})
         }}
         onChildClick={''}
       ></GoogleMapReact>

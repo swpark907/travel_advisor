@@ -11,18 +11,18 @@ const advisor = new Advisor();
 
 const App = () => {
   const [name, setName] = useState();
-  const [coordinates, setCoordinates] = useState({});
+  const [coordinates, setCoordinates] = useState({lat: 0, lng: 0});
   const [bounds, setBounds] = useState(null);
   const [place, setPlace] = useState([]);
   
   useEffect(() => {
-    console.log('loaded')
-    advisor.getHotelsData()
+    console.log(coordinates, bounds,'asdfasfsda')
+    advisor.getRestaurantsData()
     .then((data) => {
       console.log(data);
       setPlace(data);
     })
-  }, [])
+  }, [coordinates, bounds])
 
   return(
     <>
