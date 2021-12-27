@@ -3,14 +3,10 @@ import { CircularProgress, Grid, Typography, InputLabel, MenuItem, FormControl, 
 import useStyles from './styles'
 import PlaceDetails from '../PlaceDetails/PlaceDetails'
 
-const List = ({name}) => {
+const List = ({name, place}) => {
   const classes = useStyles();
   const [type, setType] = useState();
   const [rating, setRating] = useState("");
-
-  const places = [
-    {name: name},
-  ]
   
   return (
     <div className={classes.container}>
@@ -34,7 +30,7 @@ const List = ({name}) => {
       </FormControl>
       <Grid container spacint={3}>
         
-        {places?.map((place, index) => (
+        {place?.map((place, index) => (
           <Grid item key={index} xs={12}>
             <PlaceDetails place={place}></PlaceDetails>
           </Grid>
