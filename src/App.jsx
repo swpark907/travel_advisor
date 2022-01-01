@@ -43,6 +43,7 @@ const App = () => {
           <Map
           setCoordinates={setCoordinates}
           setBounds={setBounds}
+          place={place}
           />
         </Grid>
       </Grid>

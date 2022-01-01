@@ -1,6 +1,6 @@
 import React from 'react';
-import {Box, Typography, Card, CardMedia, CardContent, CardAction, Chip} from '@material-ui/core';
-import LocationOnIcon from '@material-ui/icons';
+import {Box, Typography, Card, CardMedia, CardContent, CardActions, Chip, Button} from '@material-ui/core';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
 import PhoneIcon from '@material-ui/icons/Phone'
 import Rating from '@material-ui/lab/Rating'
 
@@ -17,6 +17,10 @@ const PlaceDetails = ({place}) => {
         title={place.name}/>
         <CardContent>
           <Typography gutterBottom variant='h5'>{place.name}</Typography>
+          <Box display='flex' justifyContent="space-between">
+          <Rating value={Number(place.rating)} readOnly />
+            <Typography gutterBottom variant="subtitle1">out of </Typography>
+          </Box>
           <Box display='flex' justifyContent="space-between">
             <Typography variant='subtitle1'>Price</Typography>
             <Typography gutterBottom variant="subtitle1">{place.price_level}</Typography>
@@ -35,15 +39,15 @@ const PlaceDetails = ({place}) => {
             <Chip key={name} size="small" label={name} className={classes.chip}/>
           ))}
           {place?.address &&  (
-            <Typogrephay gutterBottom variant='body2' color='textSecondary' className={classes.subtitle}>
+            <Typography gutterBottom variant='body2' color='textSecondary' className={classes.subtitle}>
               <LocationOnIcon/> {place.address}
 
-            </Typogrephay>
+            </Typography>
           )}
           {place?.phone && (
-            <Typogrephay gutterBottom variant='body2' color='textSecondary' className={classes.phone}>
+            <Typography gutterBottom variant='body2' color='textSecondary' className={classes.phone}>
               <LocationOnIcon/> {place.phone}
-            </Typogrephay>
+            </Typography>
           )}
           <CardActions>
             <Button size='small' color='primary' onClick={() => {
