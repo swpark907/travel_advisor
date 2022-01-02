@@ -15,6 +15,7 @@ const App = () => {
   const [bounds, setBounds] = useState({ne: {lat: 37.56891243478519, lng: 127.0029724092002},
     sw: {lat: 37.52154769240252, lng: 126.95842628188086}});// 초기값 설정에 문제 있음, API결제 문제라 예상됨
   const [place, setPlace] = useState([]);
+  const [childClicked, setChildClicked] = useState(null); // Map, List 둘다에 쓰이는 state라 App에서 관리
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(({coords: {latitude, longitude}}) => {
@@ -37,13 +38,14 @@ const App = () => {
       <Header/>
       <Grid container spacing={3} style={{ width: '100%'}}>
         <Grid item xs={12} md={4}>
-          <List name={name} place={place}/>
+          <List name={name} place={place} setChildClicked={setChildClicked}/>
         </Grid>
         <Grid item xs={12} md={8}>
           <Map
           setCoordinates={setCoordinates}
           setBounds={setBounds}
           place={place}
+          setChildClicked={setChildClicked}
           />
         </Grid>
       </Grid>
