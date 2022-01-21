@@ -25,18 +25,18 @@ const App = ({ advisor }) => {
   }, []);
 
   useEffect(() => {
-    const filteredPlaces = place?.filter((place) => place.rating > rating);
+    const filteredPlaces = place.filter((place) => place.rating > rating);
     setFilteredPlaces(filteredPlaces);
-  }, [rating]);
+  }, [rating, place]);
 
   useEffect(() => {
     setIsLoading(true);
-    advisor?.getPlacesData(bounds.sw, bounds.ne, type).then((data) => {
+    advisor.getPlacesData(bounds.sw, bounds.ne, type).then((data) => {
       setPlace(data);
       setFilteredPlaces([]);
       setIsLoading(false);
     });
-  }, [coordinates, bounds, type]);
+  }, [coordinates, bounds, type, advisor]);
 
   return (
     <>
