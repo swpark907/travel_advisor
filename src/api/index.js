@@ -6,7 +6,7 @@ class Advisor {
     this.advisor = axios.create({
       headers: {
         'x-rapidapi-host': 'travel-advisor.p.rapidapi.com',
-        'x-rapidapi-key': 'a37675185amsh9d74389b0180fe4p1572e2jsn4a1ad266730d'
+        'x-rapidapi-key': process.env.REACT_APP_RAPIDAPI_API_KEY
       }
     })
   }
