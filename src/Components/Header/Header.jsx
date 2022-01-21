@@ -5,7 +5,7 @@ import SearchIcon from '@material-ui/icons/Search'
 
 import useStyles from './styles';
 
-const Header = () => {
+const Header = ({lat,lng}) => {
   const classes = useStyles();
   return (
     <AppBar position="static">
@@ -22,7 +22,7 @@ const Header = () => {
               <div className={classes.searchIcon}>
                 <SearchIcon/>
               </div>
-              <InputBase placeholder='Search...' className={{root: classes.inputRoot, input: classes.inputInput}}></InputBase>
+              <InputBase placeholder='Search...' classes={{root: classes.inputRoot, input: classes.inputInput}}></InputBase>
             </div>
           {/* </Autocomplete> */}
         </Box>

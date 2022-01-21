@@ -7,11 +7,9 @@ import Rating from '@material-ui/lab/Rating'
 import useStyles from './styles'
 
 
-const Map = ({setCoordinates, setBounds, place}) => {
+const Map = ({setCoordinates, setBounds, place, setChildClicked, coordinates}) => {
   const classes = useStyles();
   const isDesktop = useMediaQuery("(min-width: 600px)");
-
-  const coordinates = { lat: 37.57, lng: 126.99 };
 
   return (
     <div className={classes.mapContainer}>
@@ -23,17 +21,21 @@ const Map = ({setCoordinates, setBounds, place}) => {
         margin={[50, 50, 50, 50]}
         options={''}
         onChange={(e) => {
-          console.log(e); 
           setCoordinates({lat: e.center.lat, lng:e.center.lng});
           setBounds({ne: e.marginBounds.ne, sw: e.marginBounds.sw})
         }}
-        onChildClick={''}
+        onGoogleApiLoaded={(e) => {
+          setBounds({ne: e.marginBounds.ne, sw: e.marginBounds.sw})
+        }}
+        onChildClick={(child) => {
+          setChildClicked(child);
+        }}
       >
-        {place?.map((place, i) => (
+        {place?.map((place, i) => ( // GoogleMapReact 안에 div의 좌표를 설정하면 지도 위에 표시
           <div
               className={classes.markerContainer}
               lat={Number(place.latitude)}
-              lng={Number(place.longtitude)}
+              lng={Number(place.longitude)}
               key={i}
               >
                 {
@@ -46,7 +48,7 @@ const Map = ({setCoordinates, setBounds, place}) => {
                       </Typography>
                       <img 
                           className={classes.pointer}
-                          src={'https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg'}
+                          src={place.photo ? place.photo.images.large.url : 'https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg'}
                           alt={place.name}
                       />
                       <Rating size="small" value={Number(place.rating)} readOnly />
@@ -61,3 +63,4 @@ const Map = ({setCoordinates, setBounds, place}) => {
 };
 
 export default Map;
+

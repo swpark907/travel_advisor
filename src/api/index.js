@@ -11,8 +11,8 @@ class Advisor {
     })
   }
 
-  async getRestaurantsData (sw, ne) {
-    const URL = 'https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary'
+  async getPlacesData (sw, ne, type) {
+    const URL = `https://travel-advisor.p.rapidapi.com/${type}/list-in-boundary`
     const options = {
       params: {
         bl_latitude: sw.lat,
@@ -27,26 +27,6 @@ class Advisor {
     } catch(error){
       console.log(error);
     }
-  }
-
-  async getHotelsData(sw, ne) {
-    const URL = 'https://travel-advisor.p.rapidapi.com/hotels/list-in-boundary'
-    const options = {
-      params: {
-        bl_latitude: sw.lat,
-        bl_longitude: sw.lng,
-        tr_longitude: ne.lng,
-        tr_latitude: ne.lat,
-        hotel_class: '1,2,3,4,5',
-      },
-    }
-    try{
-      const {data: {data}} = await this.advisor.get(URL, options)
-      return data;
-    } catch(error){
-      console.log(error);
-    }
-    
   }
 }
 
