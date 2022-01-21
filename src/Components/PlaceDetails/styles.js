@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
-import { ScatterPlotTwoTone } from '@material-ui/icons';
+// import { ScatterPlotTwoTone } from '@material-ui/icons';
 
 export default makeStyles((theme) => ({
   card : {

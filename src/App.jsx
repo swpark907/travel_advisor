@@ -3,7 +3,7 @@ import { CssBaseline, Grid } from "@material-ui/core";
 import Header from "./Components/Header/Header";
 import List from "./Components/List/List";
 import Map from "./Components/Map/Map";
-import { PlaceSharp } from "@material-ui/icons";
+// import { PlaceSharp } from "@material-ui/icons";
 // import PlaceDetails from "./Components/PlaceDetails/PlaceDetails";
 
 const App = ({ advisor }) => {
@@ -25,13 +25,13 @@ const App = ({ advisor }) => {
   }, []);
 
   useEffect(() => {
-    const filteredPlaces = place.filter((place) => place.rating > rating);
+    const filteredPlaces = place?.filter((place) => place.rating > rating);
     setFilteredPlaces(filteredPlaces);
   }, [rating]);
 
   useEffect(() => {
     setIsLoading(true);
-    advisor.getPlacesData(bounds.sw, bounds.ne, type).then((data) => {
+    advisor?.getPlacesData(bounds.sw, bounds.ne, type).then((data) => {
       setPlace(data);
       setFilteredPlaces([]);
       setIsLoading(false);

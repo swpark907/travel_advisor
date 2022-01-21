@@ -1,4 +1,3 @@
-import { TheatersRounded } from '@material-ui/icons';
 import axios from 'axios';
 
 class Advisor {
