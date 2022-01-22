@@ -27,7 +27,7 @@ const App = ({ advisor }) => {
   useEffect(() => {
     const filteredPlaces = place.filter((place) => place.rating > rating);
     setFilteredPlaces(filteredPlaces);
-  }, [rating, place]);
+  }, [rating]);
 
   useEffect(() => {
     setIsLoading(true);
