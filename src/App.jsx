@@ -25,23 +25,27 @@ const App = ({ advisor }) => {
   }, []);
 
   useEffect(() => {
-    const filteredPlaces = place.filter((place) => place.rating > rating);
+    const filteredPlaces = place.filter((place) => Number(place.rating) > rating);
     setFilteredPlaces(filteredPlaces);
   }, [rating]);
 
   useEffect(() => {
-    setIsLoading(true);
-    advisor.getPlacesData(bounds.sw, bounds.ne, type).then((data) => {
-      setPlace(data);
-      setFilteredPlaces([]);
-      setIsLoading(false);
-    });
-  }, [coordinates, bounds, type, advisor]);
+    if (bounds.sw && bounds.ne) {
+      setIsLoading(true);
+      advisor.getPlacesData(bounds.sw, bounds.ne, type).then((data) => {
+        setPlace(data?.filter((place) => place.name && place.num_reviews > 0));
+        setFilteredPlaces([]);
+        setIsLoading(false);
+      });
+    }
+  }, [ bounds, type ]);
+
+  // console.log(filteredPlaces)
 
   return (
     <>
       <CssBaseline />
-      <Header />
+      <Header setCoordinates={setCoordinates} />
       <Grid container spacing={3} style={{ width: "100%" }}>
         <Grid item xs={12} md={4}>
           <List
@@ -52,7 +56,6 @@ const App = ({ advisor }) => {
             setType={setType}
             rating={rating}
             setRating={setRating}
-
           />
         </Grid>
         <Grid item xs={12} md={8}>
